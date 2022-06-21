@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   resources :posts
   resources :posts do
     resources :comments
+    post 'activate', to: 'posts#activate', on: :collection
   end  
 end

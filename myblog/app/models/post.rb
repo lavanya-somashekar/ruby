@@ -17,9 +17,8 @@ class Post < ApplicationRecord
     def assign_status
       self.status = STATUS[0]
     end
-    validate :active_customer, on: :create
-    def active_customer
-       puts " #{is_bad(self.body)} checking for bad"
-       errors.add(:title, "contains bad word") if is_bad(self.body)
+    validate :badtext, on: :save
+    def badtext
+      errors.add(:body,"contains bad word") if is_bad(self.body)
     end
 end
